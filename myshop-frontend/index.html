@@ -1,0 +1,106 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyShop — Home</title>
+    <meta name="description" content="Discover great products at great prices." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/home.js" defer></script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="header">
+    <div class="container header__inner">
+        <a href="index.html" class="logo">My<span>Shop</span></a>
+
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="primary-nav">
+            <span></span><span></span><span></span>
+        </button>
+
+        <nav class="nav" id="primary-nav">
+            <a href="index.html" class="nav__link is-active" aria-current="page">Home</a>
+            <a href="pages/products.html" class="nav__link">Products</a>
+            <a href="pages/login.html" class="nav__link">Login</a>
+            <a href="pages/cart.html" class="nav__link nav__link--cart">
+                Cart <span class="badge" id="cart-count">0</span>
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main id="main">
+
+    <section class="hero">
+        <div class="container">
+            <p class="eyebrow"><span class="dot"></span> New arrivals every week</p>
+            <h1>Welcome to MyShop</h1>
+            <p class="hero__text">
+                Discover great products at great prices — handpicked quality,
+                fast delivery, and a checkout you can trust.
+            </p>
+            <div class="hero__actions">
+                <a class="btn btn--primary" href="pages/products.html">Shop Now</a>
+                <a class="btn btn--ghost" href="pages/login.html">Sign in</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <div class="section-head">
+                <h2>Shop by Category</h2>
+                <p>Browse our most popular collections.</p>
+            </div>
+
+            <div class="category-list">
+                <a class="category" href="pages/products.html">
+                    <span class="category__icon" aria-hidden="true">📱</span>
+                    <h3>Electronics</h3>
+                    <span class="category__hint">Browse →</span>
+                </a>
+
+                <a class="category" href="pages/products.html">
+                    <span class="category__icon" aria-hidden="true">👕</span>
+                    <h3>Clothing</h3>
+                    <span class="category__hint">Browse →</span>
+                </a>
+
+                <a class="category" href="pages/products.html">
+                    <span class="category__icon" aria-hidden="true">👟</span>
+                    <h3>Footwear</h3>
+                    <span class="category__hint">Browse →</span>
+                </a>
+
+                <a class="category" href="pages/products.html">
+                    <span class="category__icon" aria-hidden="true">📚</span>
+                    <h3>Books</h3>
+                    <span class="category__hint">Browse →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <p>&copy; 2026 MyShop. All rights reserved.</p>
+        <nav class="footer__links">
+            <a href="pages/products.html">Products</a>
+            <a href="pages/login.html">Login</a>
+            <a href="pages/cart.html">Cart</a>
+        </nav>
+    </div>
+</footer>
+
+</body>
+</html>
