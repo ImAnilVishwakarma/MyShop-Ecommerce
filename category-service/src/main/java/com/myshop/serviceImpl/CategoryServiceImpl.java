@@ -10,7 +10,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.support.MissingServletRequestPartException;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 import java.util.List;
 import java.util.Objects;
 
@@ -53,8 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryRequestDto deleteCategory(Integer id, CategoryRequestDto categoryRequestDto) {
         if (id == null || categoryRequestDto.getCategoryId() == null) {
-            System.out.println("Category ID is required : " + id);
-            return categoryRequestDto;
+            throw new BadRequestException("CategoryId id Not found", HttpStatus.SERVICE_UNAVAILABLE);
         }
         Category existcategory = repo.findById(id).orElse(null);
         if (existcategory == null) {
@@ -88,6 +94,39 @@ public class CategoryServiceImpl implements CategoryService {
         }
        List<CategoryRequestDto> categoryRequestDtoList =  categoryList.stream().map(cat->mapper.map(cat, CategoryRequestDto.class)).toList();
        return categoryRequestDtoList;
-    }   
-}
+    }
+
+    @Override
+    public String saveImage(MultipartFile file) throws IOException, MissingServletRequestPartException {
+            if (file == null || file.isEmpty()) {
+                throw new MissingServletRequestPartException("file' is not present");
+            }
+
+            // Folder ka path
+            Path uploadPath = Paths.get("D:\\Anil\\MyShop-Ecommerce\\category-service\\uploads")
+                    .toAbsolutePath()
+                    .normalize();
+
+            // Folder nahi hai toh create karo
+            Files.createDirectories(uploadPath);
+
+            // Unique filename generate karo
+            String originalName = file.getOriginalFilename();
+            String extension = "";
+
+            if (originalName != null && originalName.lastIndexOf('.') >= 0) {
+                extension = originalName.substring(originalName.lastIndexOf('.'));
+            }
+
+            String fileName = UUID.randomUUID() + extension;
+
+            // Actual image save karo
+            Path filePath = uploadPath.resolve(fileName);
+            file.transferTo(filePath);
+
+            // Image ka path return karo
+            return "/uploads/" + fileName;
+        }
+    }
+
 

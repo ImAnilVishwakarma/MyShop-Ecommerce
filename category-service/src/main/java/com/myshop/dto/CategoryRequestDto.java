@@ -13,6 +13,7 @@ public class CategoryRequestDto {
     private Integer categoryId;
     private String categoryName;
     private String description;
+    private String originalImgName;
     private String imageUrl;
     private Boolean isActive;
 }
