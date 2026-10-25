@@ -3,6 +3,7 @@ package com.myshop.controller;
 import com.myshop.dto.CategoryRequestDto;
 import com.myshop.repository.CategoryRepository;
 import com.myshop.service.CategoryService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,7 +36,7 @@ public class CategoryController {
 
 
     @PostMapping(value = "/save", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<CategoryRequestDto> saveCategory(
+    public ResponseEntity<CategoryRequestDto> saveCategory(@Valid
             @RequestParam("categoryName") String categoryName,
             @RequestParam("description") String description,
             @RequestParam("isActive") Boolean isActive,
